@@ -1,0 +1,72 @@
+name: tables
+version: 0.0.1
+cabal-version: -any
+build-type: Simple
+license: AllRightsReserved
+license-file: BSD3
+copyright:
+maintainer: Amtal <alex.kropivny@gmail.com
+build-depends: base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, bytestring -any
+stability: experimental
+homepage:
+package-url:
+bug-reports:
+synopsis: Loading flat data tables into typesafe data structures.
+description: A library for loading flat, homogeneous database tables into fancy typesafe data structures. Designed to totally parse complex tables, while extracting as much structure with as little effort as possible.
+category: database
+author: Amtal <alex.kropivny@gmail.com
+tested-with:
+data-files:
+data-dir: ""
+extra-source-files:
+extra-tmp-files:
+exposed-modules: Text.Tables Text.TSV.ByteString
+exposed: True
+buildable: True
+build-tools:
+cpp-options:
+cc-options:
+ld-options:
+pkgconfig-depends:
+frameworks:
+c-sources:
+extensions:
+extra-libraries:
+extra-lib-dirs:
+includes:
+install-includes:
+include-dirs:
+hs-source-dirs: src
+other-modules:
+ghc-prof-options:
+ghc-shared-options:
+ghc-options:
+hugs-options:
+nhc98-options:
+jhc-options:
+ 
+executable: tables
+main-is: Main.hs
+buildable: True
+build-tools:
+cpp-options:
+cc-options:
+ld-options:
+pkgconfig-depends:
+frameworks:
+c-sources:
+extensions:
+extra-libraries:
+extra-lib-dirs:
+includes:
+install-includes:
+include-dirs:
+hs-source-dirs: src
+other-modules:
+ghc-prof-options:
+ghc-shared-options:
+ghc-options:
+hugs-options:
+nhc98-options:
+jhc-options:

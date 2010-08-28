@@ -1,0 +1,36 @@
+Make loading hideous CSV files with hundred of columns as easy as:
+
+-- | gems.txt
+gems :: IO [Gem]
+gems = load "gems.txt"
+
+data Gem = Gem
+    { name :: ByteString
+    , letter :: Maybe ByteString
+    , transform :: Maybe Int
+    , code :: ByteString
+    , nummods :: Int
+    , weaponMods :: [Mod]
+    , helmMods :: [Mod]
+    , shieldMods :: [Mod]
+    } deriving (Show,Eq)
+
+instance Field Gem where
+    dec = Gem<$>dec<*>dec<*>dec<*>dec<*>dec<*>mods<*>mods<*>mods where
+        mods = replicateM 3 dec >>= return . catMaybes
+
+data Mod = Mod
+    { modCode :: ByteString
+    , modParam :: Int
+    , modRange :: (Int,Int)
+    } deriving (Show,Eq)
+
+instance Field (Maybe Mod) where
+    dec = do
+        mod <- Mod <$> dec <*> dec <*> dec
+        return $ if modCode mod == S.empty then Nothing else (Just mod)
+
+
+
+
+Inspired by that "databases are categories" presentation from Galois. (TODO: write more about that.)
