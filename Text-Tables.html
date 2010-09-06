@@ -72,7 +72,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Text-Tables.html");};
  composition is a lifesaver. Even with a simple passwd file, it quickly produces
  nice results:
 </p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let splitPasswd = map (map pack . split ':') . split '\n'
-</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>table &lt;- fmap splitPasswd (readFile &quot;/etc/passwd&quot;)
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>table &lt;- readFile &quot;/etc/passwd&quot; &gt;&gt;= return . splitPasswd
 </code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let passwds = map (runDecoder dec) table
 </code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>passwds !! 0
 </code></strong>Passwd { pwdAccount = &quot;root&quot;, pwdHash = ShadowFile, pwdUid = 0, pwdGid = 0,
@@ -98,12 +98,13 @@ pwdDescription = &quot;root&quot;, pwdHome = &quot;/root&quot;, pwdShell = &quot
      , modRange :: (Int,Int)
      } deriving (Show,Eq)
 </pre><p>Most of the structure is defined by the type: the parser is defined via
- a boilerplate `instance Field Type where TypeConstr<a href="$">$</a>dec<a href="*">*</a>dec<a href="*">*</a>dec<a href="*">*</a>...`
+ a boilerplate
+ <code>instance Field Type where dec = TypeConstr&lt;$&gt;dec&lt;*&gt;dec&lt;*&gt;dec&lt;*&gt;...</code>
  line.
 </p><p>Some information can't fit into the type, however. The lists, for instance,
  represent repeating columns - but how many? Here, using <code><a href="Text-Tables.html#v:dec">dec</a></code> to parse isn't
- enough. And while it's clear what <code>Maybe Foo</code> means, what value of <code>Foo</code> counts
- as <code>Nothing</code>?
+ enough. And while it's clear what <code>Maybe Foo</code> means, which specific value of
+ <code>Foo</code> counts as <code>Nothing</code>?
 </p><pre> instance Field Gem where
      dec = Gem&lt;$&gt;dec&lt;*&gt;dec&lt;*&gt;dec&lt;*&gt;dec&lt;*&gt;dec&lt;*&gt;mods&lt;*&gt;mods&lt;*&gt;mods where
          -- `[Mod]` is parsed by parsing 3 `Maybe Mod` values and reducing
