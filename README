@@ -1,3 +1,5 @@
+Detailed documentation at: http://amtal.github.com/tables
+
 Make loading hideous CSV files with hundred of columns as easy as:
 
 -- | gems.txt 
