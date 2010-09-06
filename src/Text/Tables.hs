@@ -149,7 +149,7 @@ skip n = replicateM n (dec::Decoder ByteString) >> return ()
 -- nice results:
 --
 -- >>> let splitPasswd = map (map pack . split ':') . split '\n'
--- >>> table <- fmap splitPasswd (readFile "/etc/passwd")
+-- >>> table <- readFile "/etc/passwd" >>= return . splitPasswd
 -- >>> let passwds = map (runDecoder dec) table
 -- >>> passwds !! 0
 -- Passwd { pwdAccount = "root", pwdHash = ShadowFile, pwdUid = 0, pwdGid = 0,
