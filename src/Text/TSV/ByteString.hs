@@ -1,34 +1,29 @@
------------------------------------------------------------------------------
+-- | Parser for tab separated value files.
 --
--- Module      :  Text.TSV.ByteString
--- Copyright   :
--- License     :  AllRightsReserved
+-- Follows naming conventions of bytestring-csv package, but treats adjacent separators
+-- as enclosing empty cells.
 --
--- Maintainer  :  Amtal <alex.kropivny@gmail.com
--- Stability   :  experimental
--- Portability :
---
--- |
---
------------------------------------------------------------------------------
-
-module Text.TSV.ByteString (
-      Cell, Row, CSV
-    , parseCSV
+-- TSV files are a variant of comma separated value files, usually used to store tables
+-- of data organized into columns and rows.
+module Text.TSV.ByteString
+    ( Row
+    , parseTSV
 ) where
 
 import qualified Data.ByteString.Char8 as S
 import Data.ByteString.Char8 (ByteString)
 
-type Cell = ByteString
-type Row = [Cell]
-type CSV = [Row]
+-- | A single row consists of a bunch of cells.
+type Row = [ByteString]
 
--- | This never actually fails, and provides zero guarantees about
--- column and row length consistency.
--- Will do for now.
-parseCSV :: ByteString -> CSV
-parseCSV = filter (/= [])
+-- | Parses the contents of a TSV file.
+--
+-- Treats @\\t@ as column separators and @\\n@ or @\\r\\n@ as row separators.
+-- Several separators in a row are treated as surrounding empty columns/rows.
+--
+-- No column/row count consistency enforced.
+parseTSV :: ByteString -> [Row]
+parseTSV = filter (/= [])
          . fmap (S.split '\t')
          . fmap removeTailR . S.split '\n'
     where

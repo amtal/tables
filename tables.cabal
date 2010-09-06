@@ -3,17 +3,78 @@ version: 0.0.1
 cabal-version: -any
 build-type: Simple
 license: AllRightsReserved
-license-file: BSD3
+license-file: "D:\\Projects\\_2010 Spring\\_items\\tables\\LICENSE"
 copyright:
 maintainer: Amtal <alex.kropivny@gmail.com
 build-depends: base -any, base -any, base -any, base -any,
-               base -any, base -any, base -any, bytestring -any
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, base -any, base -any,
+               base -any, base -any, base -any, base -any, bytestring -any,
+               bytestring -any, bytestring -any, bytestring -any, bytestring -any,
+               bytestring -any, bytestring -any, bytestring -any, bytestring -any,
+               bytestring -any, bytestring -any, bytestring -any, bytestring -any,
+               bytestring -any, bytestring -any, bytestring -any, bytestring -any,
+               bytestring -any, bytestring -any, bytestring -any, bytestring -any,
+               bytestring -any, bytestring -any, bytestring -any, bytestring -any,
+               bytestring -any, bytestring -any, bytestring -any, bytestring -any,
+               bytestring -any, bytestring -any, bytestring -any, monadLib -any,
+               monadLib -any, monadLib -any, monadLib -any, monadLib -any,
+               monadLib -any, monadLib -any, monadLib -any, monadLib -any,
+               monadLib -any, monadLib -any, monadLib -any, monadLib -any,
+               monadLib -any, monadLib -any, monadLib -any
 stability: experimental
 homepage:
-package-url:
+package-url: http://github.com/amtal/tables
 bug-reports:
-synopsis: Loading flat data tables into typesafe data structures.
-description: A library for loading flat, homogeneous database tables into fancy typesafe data structures. Designed to totally parse complex tables, while extracting as much structure with as little effort as possible.
+synopsis: Loading data from flat files, into typesafe high-level data types.
+description: A library for loading denormalized tables stored in flat files, into fancy
+             typesafe data structures. Designed to easily define total parsers for
+             complex tables, while extracting as much structure as possible.
+             (And thus simplifying the data.)
+             .
+             A table stored in a CSV file might contain over a hundred columns.
+             Usually the columns have some structure to them: they might
+             encode optional values, or minimum+maximum values, or several
+             of identical properties each one containing several columns.
+             .
+             This library lets you describe the high level structure via a data type.
+             Minimal amounts of boilerplate code will then produce a parser from
+             the raw strings of the table, into this high level data type.
+             .
+             The method was inspired by the 'Records are Categories' Galois
+             Tech Talk.
 category: database
 author: Amtal <alex.kropivny@gmail.com
 tested-with:
