@@ -181,13 +181,14 @@ skip n = replicateM n (dec::Decoder ByteString) >> return ()
 -- >     } deriving (Show,Eq)
 --
 -- Most of the structure is defined by the type: the parser is defined via
--- a boilerplate `instance Field Type where TypeConstr<$>dec<*>dec<*>dec<*>...`
+-- a boilerplate
+-- @instance Field Type where dec = TypeConstr\<$\>dec\<*\>dec\<*\>dec\<*\>...@
 -- line.
 --
 -- Some information can't fit into the type, however. The lists, for instance,
 -- represent repeating columns - but how many? Here, using 'dec' to parse isn't
--- enough. And while it's clear what @Maybe Foo@ means, what value of @Foo@ counts
--- as @Nothing@?
+-- enough. And while it's clear what @Maybe Foo@ means, which specific value of
+-- @Foo@ counts as @Nothing@?
 --
 -- > instance Field Gem where
 -- >     dec = Gem<$>dec<*>dec<*>dec<*>dec<*>dec<*>mods<*>mods<*>mods where
